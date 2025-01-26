@@ -1,71 +1,53 @@
-                                                    COP5615- Distributed Operating System Principles
-                                                                    Fall 2023
-                                                            Programming Assignment #3
-                                                                    Team 4
+# Distributed Algorithms with Gossip and Push-Sum
 
-                                    Ansh Khatri		   Abhinav Aryal 	        Nandan Dave		Manvi Gupta
-                                    5754-5908		   3327-1507		        5364-2074		9050-7900
-                            ansh.khatri@ufl.edu	   abhinavaryal@ufl.edu     nandandave@ufl.edu  manvigupta@ufl.edu
+## Project Overview
 
-How to run:
+This project focuses on implementing and simulating distributed algorithms—Gossip and Push-Sum—using **F#** and the **Akka.NET framework**. The simulation explores how these algorithms perform across various network topologies and evaluates their convergence behavior and performance.
 
-Use the command “dotnet run numberOfNodes topologyName AlgorithmName” after opening the terminal in the directory of the file. 
-dotnet run 5 line pushsum
-Here, 5 is the number of nodes line is the name of the Topology and pushsum is the Name of the algorithm.
+## Objectives
 
-For running
+- Simulate Gossip and Push-Sum algorithms for distributed networks.
+- Experiment with different network topologies:
+  - Line
+  - 2D Grid
+  - Full
+  - Imperfect 3D Grid
+- Analyze convergence times and the efficiency of the algorithms.
+- Handle large-scale networks with up to:
+  - **10,000 nodes** for Gossip.
+  - **5,000 nodes** for Push-Sum.
 
-Topology Name:
-line, full, 2D, imp3D
+## Features
 
-Algorithm name: 
-Gossip, pushsum
+- **Gossip Algorithm**: 
+  - Spreads a piece of information across a network of nodes.
+  - Tracks convergence based on how many nodes receive the message.
 
+- **Push-Sum Algorithm**:
+  - Computes a sum or average in a distributed network using a probabilistic approach.
+  - Convergence is evaluated by observing changes in node values over iterations.
 
+- **Network Topologies**:
+  - **Line**: Nodes are connected in a sequential order.
+  - **2D Grid**: Nodes are connected in a two-dimensional lattice structure.
+  - **Full**: Every node is connected to every other node.
+  - **Imperfect 3D Grid**: A 3D grid with random additional connections.
 
+## Technologies Used
 
+- **F#**: Functional programming language for implementing the algorithms.
+- **Akka.NET Framework**: Actor-based model for managing distributed processes and simulating message passing.
+- **.NET Environment**: Base platform for development and execution.
 
+## Performance Evaluation
 
-What is working
+- Conducted simulations on networks with varying sizes and topologies.
+- Measured convergence times and analyzed algorithm performance under different scenarios.
+- Visualized results to provide insights into scalability and efficiency.
 
-Actor Implementation
+## How to Run the Project
 
- To mimic a distributed system, the project effectively uses F# actors inside the Akka framework. Actors exchange messages to engage asynchronously as participants in the network.
-
-Gossip Algorithm
-
-When the gossip algorithm is used, actors disseminate rumours by choosing at random which of their neighbours to contact with information. The actors count how many times they have heard the rumour, cutting the feed after a set number of times (10 by default).
-
-Push-Sum Algorithm
-
- The use of the Push-Sum method, in which each actor keeps track of two values (s and w), interacts with neighbours, and computes the sum using ratio convergence criteria, is another functional feature.
-
-Topology Creation
-Different network topologies (Line, Imperfect 3D Grid, Full Network, and 2D Grid) are created, and their arrangement determines how the actors interact.
-
-Main Process & Termination
- When all players converge or the rumour spreads sufficiently, the main process ends the system. It also initiates the start of algorithms and records convergence.
-
-Command-Line Input
- To define the number of actors, the topology to be used, and the method (e.g., dotnet run 20-line gossip), the project allows command-line input.
-
-
-
-
-
-
-
-
-What is the largest network you managed to deal with for each type of topology and algorithm?
-
-For all the topologies using Gossip Algorithm, we were able to implement up to 10000 nodes,
-But while implementing the Line topology took significantly more time when compared to the other topologies.
-
-For the PushSum we were also able to implement up to 10000 nodes but we were only able to implement 5000 nodes for the PushSum algorithm.
-
-
-
-
-
-
-The Graphs can be seen in the report for both the algorithms.
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd <repository-folder>
